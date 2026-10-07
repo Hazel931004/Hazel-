@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吳知錡 Chih-Chi Wu | 個人履歷網站</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#faf6f0',
+                            100: '#f4ede2',
+                            200: '#e7d8c5',
+                            300: '#d7bea1',
+                            400: '#c5a07c',
+                            500: '#b4855d',
+                            600: '#9b6c49',
+                            700: '#7f543c',
+                            800: '#684535',
+                            900: '#553a2d',
+                        },
+                        sand: {
+                            50: '#fdfbf7',
+                            100: '#f8f4ee',
+                            200: '#efebdf',
+                            800: '#2b2621',
+                            900: '#1d1915'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .animate-glow {
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-panel {
+            background: rgba(29, 25, 21, 0.75);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; color: black !important; }
+        }
+    </style>
+</head>
+<body class="bg-sand-50 dark:bg-sand-900 text-stone-800 dark:text-stone-100 font-sans transition-colors duration-300 antialiased selection:bg-brand-300 selection:text-stone-900">
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 ease-out pointer-events-none flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-xl bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-sm font-medium border border-stone-800 dark:border-stone-200">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-base"></i>
+        <span id="toast-message">通知訊息</span>
+    </div>
+
+    <header class="fixed top-0 left-0 w-full z-40 transition-all duration-300 no-print" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-3">
+            <div class="glass-panel border border-stone-200/80 dark:border-stone-800/80 rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between shadow-sm">
+                <!-- Logo -->
+                <a href="#" class="group flex items-center gap-2.5 text-stone-900 dark:text-white font-bold text-lg tracking-wide">
+                    <span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 text-white flex items-center justify-center font-semibold text-sm shadow-sm group-hover:scale-105 transition-transform">
+                        吳
+                    </span>
+                    <span>吳知錡 <span class="text-xs text-brand-600 dark:text-brand-400 font-normal hidden sm:inline-block">Chih-Chi Wu</span></span>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium">
+                    <a href="#about" class="nav-link px-3 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">關於我</a>
+                    <a href="#education" class="nav-link px-3 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">學歷與研習</a>
+                    <a href="#experience" class="nav-link px-3 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">實習經歷</a>
+                    <a href="#skills" class="nav-link px-3 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">專業能力</a>
+                    <a href="#contact" class="nav-link px-3 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">聯絡方式</a>
+                </nav>
+
+                <!-- Actions Button -->
+                <div class="flex items-center gap-2">
+                    <!-- Preview Resume Modal Trigger -->
+                    <button onclick="openModal()" class="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-xl bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-300 transition-colors flex items-center gap-1.5">
+                        <i class="fa-regular fa-file-lines text-brand-600 dark:text-brand-400"></i>
+                        <span class="hidden sm:inline">簡歷速覽</span>
+                    </button>
+
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" onclick="toggleTheme()" class="w-9 h-9 rounded-xl bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-600 dark:text-stone-300 transition-colors flex items-center justify-center" aria-label="Toggle Dark Mode">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden w-9 h-9 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 flex items-center justify-center">
+                        <i class="fa-solid fa-bars" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden mt-2 glass-panel border border-stone-200/80 dark:border-stone-800/80 rounded-2xl p-4 shadow-lg flex flex-col gap-2 font-medium">
+                <a href="#about" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800">關於我</a>
+                <a href="#education" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800">學歷與海外研習</a>
+                <a href="#experience" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800">實習經歷</a>
+                <a href="#skills" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800">專業技能</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="px-3 py-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800">聯絡方式</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <!-- Background Decorative Elements -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-brand-200/40 to-brand-400/20 dark:from-brand-900/30 dark:to-brand-800/10 rounded-full blur-3xl -z-10 animate-glow"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Bio Content -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 text-xs sm:text-sm font-semibold mb-6 border border-brand-200 dark:border-brand-800">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        積極尋求 國際貿易 / 業務助理 實習與正職機會
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-900 dark:text-white mb-4">
+                        吳知錡 <span class="text-xl sm:text-2xl font-normal text-stone-500 dark:text-stone-400 block sm:inline sm:ml-2">Chih-Chi Wu</span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl font-medium text-brand-600 dark:text-brand-400 mb-6">
+                        國際貿易與商務溝通專員 <span class="text-stone-400 dark:text-stone-600">|</span> 跨文化協作與財務實務
+                    </p>
+
+                    <p class="text-stone-600 dark:text-stone-300 leading-relaxed text-base sm:text-lg mb-8 max-w-2xl mx-auto lg:mx-0">
+                        熱衷於學習新知識，積極吸收貿易、進出口相關領域。具備解決問題的能力與細心態度，期望將國貿理論與實務經驗完美融合，發揮跨文化溝通協調能力與團隊合作精神，提升國際商務交流效益與業務操作效率。
+                    </p>
+
+                    <!-- Quick Action Buttons -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-10">
+                        <a href="#contact" class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> 聯絡我
+                        </a>
+                        <button onclick="copyToClipboard('a0909871018@gmail.com', 'Email 已複製至剪貼簿！')" class="px-6 py-3 rounded-xl bg-stone-200/80 dark:bg-stone-800 hover:bg-stone-300/80 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-200 font-medium transition-colors flex items-center gap-2">
+                            <i class="fa-regular fa-copy text-brand-600 dark:text-brand-400"></i> 複製 Email
+                        </button>
+                    </div>
+
+                    <!-- Highlights Stat Badge Cards -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-stone-200/80 dark:border-stone-800/80 max-w-xl mx-auto lg:mx-0">
+                        <div class="p-3.5 rounded-2xl bg-white/60 dark:bg-stone-800/40 border border-stone-200/60 dark:border-stone-800/60 text-center lg:text-left">
+                            <div class="text-2xl font-bold text-stone-900 dark:text-white">東海大學</div>
+                            <div class="text-xs text-stone-500 dark:text-stone-400 mt-0.5">國貿系專業背景</div>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-white/60 dark:bg-stone-800/40 border border-stone-200/60 dark:border-stone-800/60 text-center lg:text-left">
+                            <div class="text-2xl font-bold text-brand-600 dark:text-brand-400">美國研習</div>
+                            <div class="text-xs text-stone-500 dark:text-stone-400 mt-0.5">聖十字學院 2025</div>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1 p-3.5 rounded-2xl bg-white/60 dark:bg-stone-800/40 border border-stone-200/60 dark:border-stone-800/60 text-center lg:text-left">
+                            <div class="text-2xl font-bold text-stone-900 dark:text-white">實務經驗</div>
+                            <div class="text-xs text-stone-500 dark:text-stone-400 mt-0.5">會計憑證與財務</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Profile Avatar / Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-sm">
+                        <!-- Decorative Frame Shapes -->
+                        <div class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-brand-400 to-brand-200 dark:from-brand-800 dark:to-brand-600 opacity-50 blur-lg animate-float"></div>
+                        
+                        <!-- Main Photo Card Container -->
+                        <div class="relative bg-white dark:bg-stone-800 rounded-3xl p-6 shadow-2xl border border-stone-100 dark:border-stone-700 text-center">
+                            <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto mb-6 rounded-2xl overflow-hidden shadow-inner bg-stone-100 dark:bg-stone-700 ring-4 ring-brand-100 dark:ring-brand-900/50">
+                                <!-- Styled Avatar Illustration Placeholder -->
+                                <svg class="w-full h-full text-stone-300 dark:text-stone-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end justify-center pb-3">
+                                    <span class="text-xs text-white/90 font-medium tracking-wide bg-stone-900/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                                        吳知錡 照片預覽
+                                    </span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-stone-900 dark:text-white">吳知錡 (Chih-Chi Wu)</h3>
+                            <p class="text-sm text-stone-500 dark:text-stone-400 mt-1 mb-4">International Trade & Business Student</p>
+
+                            <!-- Social / Quick Info List -->
+                            <div class="space-y-2.5 text-left text-sm pt-4 border-t border-stone-100 dark:border-stone-700/60">
+                                <div class="flex items-center gap-3 text-stone-600 dark:text-stone-300">
+                                    <span class="w-8 h-8 rounded-lg bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </span>
+                                    <span class="truncate">臺中市龍井區大順街132巷3號</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-stone-600 dark:text-stone-300">
+                                    <span class="w-8 h-8 rounded-lg bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-id-card"></i>
+                                    </span>
+                                    <span>普通重型機車、普通小型車</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-20 bg-stone-100/60 dark:bg-stone-800/30 border-y border-stone-200/60 dark:border-stone-800/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">ACADEMIC & GLOBAL</h2>
+                <p class="text-3xl font-bold text-stone-900 dark:text-white">學歷與海外研習</p>
+                <div class="w-12 h-1 bg-brand-500 rounded-full mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Education Card -->
+                <div class="bg-white dark:bg-stone-800 rounded-3xl p-8 border border-stone-200/80 dark:border-stone-700/80 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-100 dark:bg-brand-900/20 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+                    
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 text-xs font-semibold">
+                                在學中 (至今)
+                            </span>
+                            <span class="text-sm font-medium text-stone-400">台中市</span>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-stone-900 dark:text-white mb-1">東海大學</h3>
+                        <p class="text-brand-600 dark:text-brand-400 font-medium mb-6">國際經營與貿易學系 (國貿系)</p>
+
+                        <ul class="space-y-3.5 text-stone-600 dark:text-stone-300 text-sm">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-brand-500 mt-1 shrink-0"></i>
+                                <span><strong>經濟與市場分析：</strong> 深入理解經濟學原理與國際市場分析，培養客觀商業判斷力。</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-brand-500 mt-1 shrink-0"></i>
+                                <span><strong>跨文化溝通能力：</strong> 學習國際商務談判與溝通技巧，有效提升國際交流效益。</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-brand-500 mt-1 shrink-0"></i>
+                                <span><strong>企業管理與領導：</strong> 熟知企業管理組織運作，具備優良的團隊協作與溝通引導實力。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Overseas Study Card -->
+                <div class="bg-white dark:bg-stone-800 rounded-3xl p-8 border border-stone-200/80 dark:border-stone-700/80 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-amber-100 dark:bg-amber-900/20 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+
+                    <div class="relative">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 text-xs font-semibold">
+                                2025 年 6 月
+                            </span>
+                            <span class="text-sm font-medium text-stone-400">美國 (USA)</span>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-stone-900 dark:text-white mb-1">美國聖十字學院</h3>
+                        <p class="text-amber-600 dark:text-amber-400 font-medium mb-6">暑期國際商務研習計畫</p>
+
+                        <ul class="space-y-3.5 text-stone-600 dark:text-stone-300 text-sm">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-earth-americas text-amber-500 mt-1 shrink-0"></i>
+                                <span><strong>跨文化團隊專案：</strong> 參與全英文跨文化專案小組合作，進一步強化外語表達與簡報溝通。</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-chart-line text-amber-500 mt-1 shrink-0"></i>
+                                <span><strong>全球經濟脈動：</strong> 深入了解美國市場及全球經濟趨勢，掌握現代國際貿易環境變化。</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-handshake text-amber-500 mt-1 shrink-0"></i>
+                                <span><strong>商務禮儀與職場文化：</strong> 親體驗美式商務禮儀，學習多元職場文化的差異化管理技巧。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">PRACTICAL EXPERIENCE</h2>
+                <p class="text-3xl font-bold text-stone-900 dark:text-white">實習與職涯經歷</p>
+                <div class="w-12 h-1 bg-brand-500 rounded-full mx-auto mt-4"></div>
+            </div>
+
+            <!-- Experience Timeline Container -->
+            <div class="max-w-3xl mx-auto">
+                <div class="relative pl-6 sm:pl-8 border-l-2 border-brand-200 dark:border-brand-900 space-y-12">
+                    
+                    <!-- Timeline Point item -->
+                    <div class="relative group">
+                        <!-- Dot Icon -->
+                        <div class="absolute -left-[31px] sm:-left-[39px] top-1 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-brand-500 text-white flex items-center justify-center text-xs shadow-md ring-4 ring-sand-50 dark:ring-sand-900 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+
+                        <!-- Card Block -->
+                        <div class="bg-white dark:bg-stone-800 rounded-2xl p-6 sm:p-8 border border-stone-200/80 dark:border-stone-700/80 shadow-sm">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <h3 class="text-xl font-bold text-stone-900 dark:text-white">會計助理實習生</h3>
+                                <span class="px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 text-xs font-medium">
+                                    台南市陳浣青
+                                </span>
+                            </div>
+
+                            <p class="text-stone-600 dark:text-stone-300 text-sm leading-relaxed mb-4">
+                                在實習期間負責細緻的財務核對與會計資料彙整，嚴格把關資料準確度，並深入學習企業實務運作流程。
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-stone-100 dark:border-stone-700">
+                                <div class="flex items-start gap-2.5 text-xs text-stone-600 dark:text-stone-400">
+                                    <i class="fa-solid fa-file-invoice text-brand-600 dark:text-brand-400 mt-0.5"></i>
+                                    <span>整理及核對會計憑證，確保財務資料完整性與精準無誤。</span>
+                                </div>
+                                <div class="flex items-start gap-2.5 text-xs text-stone-600 dark:text-stone-400">
+                                    <i class="fa-solid fa-building-columns text-brand-600 dark:text-brand-400 mt-0.5"></i>
+                                    <span>參與公司財務管理流程，建立對財務實務作業規範的完整理解。</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-stone-100/60 dark:bg-stone-800/30 border-y border-stone-200/60 dark:border-stone-800/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">COMPETENCIES</h2>
+                <p class="text-3xl font-bold text-stone-900 dark:text-white">專業能力與特色標籤</p>
+                <div class="w-12 h-1 bg-brand-500 rounded-full mx-auto mt-4"></div>
+            </div>
+
+            <!-- Filter Buttons Tabs -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-10" id="skill-filters">
+                <button onclick="filterSkills('all')" class="skill-tab-btn active px-4 py-2 rounded-xl text-sm font-medium transition-all bg-brand-600 text-white shadow-sm" data-category="all">
+                    全部能力 (All)
+                </button>
+                <button onclick="filterSkills('trade')" class="skill-tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700" data-category="trade">
+                    國貿與市場分析
+                </button>
+                <button onclick="filterSkills('finance')" class="skill-tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700" data-category="finance">
+                    財務憑證與管理
+                </button>
+                <button onclick="filterSkills('soft')" class="skill-tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700" data-category="soft">
+                    軟實力與個人特質
+                </button>
+                <button onclick="filterSkills('license')" class="skill-tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700" data-category="license">
+                    駕照與資格
+                </button>
+            </div>
+
+            <!-- Skills Grid Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="skills-container">
+                
+                <!-- Skill 1 -->
+                <div class="skill-card p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700/80 shadow-sm hover:border-brand-400 transition-all" data-category="trade">
+                    <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">國際貿易實務概念</h3>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">掌握進出口流程基礎、貿易條件與國際商業環境脈動。</p>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="skill-card p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700/80 shadow-sm hover:border-brand-400 transition-all" data-category="trade">
+                    <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">經濟學與市場判斷</h3>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">運用經濟學原理解讀市場數據，協助商業決策分析。</p>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="skill-card p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700/80 shadow-sm hover:border-brand-400 transition-all" data-category="finance">
+                    <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">會計憑證核對</h3>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">精準處理財務憑證整理，細心確保數據資料完全無誤。</p>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="skill-card p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700/80 shadow-sm hover:border-brand-400 transition-all" data-category="soft">
+                    <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">跨文化溝通與協調</h3>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">美商研習經驗加持，具備良好的同理溝通與組織協調能力。</p>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="skill-card p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700/80 shadow-sm hover:border-brand-400 transition-all" data-category="soft">
+                    <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">問題解決與細心態度</h3>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">對細節高度敏感，遇到突發狀況能冷靜應對並主動解決。</p>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="skill-card p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700/80 shadow-sm hover:border-brand-400 transition-all" data-category="license">
+                    <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">駕駛執照</h3>
+                    <p class="text-xs text-stone-500 dark:text-stone-400">持有「普通重型機車」及「普通小型車」駕照，具移動彈性。</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">GET IN TOUCH</h2>
+                <p class="text-3xl font-bold text-stone-900 dark:text-white">聯絡與合作諮詢</p>
+                <div class="w-12 h-1 bg-brand-500 rounded-full mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Left Info Cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700/80 flex items-start gap-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-semibold text-stone-400 uppercase tracking-wider mb-1">電子郵件 (Email)</h4>
+                            <p class="text-base font-bold text-stone-900 dark:text-white truncate">a0909871018@gmail.com</p>
+                            <button onclick="copyToClipboard('a0909871018@gmail.com', 'Email 已複製！')" class="mt-2 text-xs font-medium text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1">
+                                <i class="fa-regular fa-copy"></i> 點擊複製 Email
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700/80 flex items-start gap-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-sm font-semibold text-stone-400 uppercase tracking-wider mb-1">聯絡電話 (Phone)</h4>
+                            <p class="text-base font-bold text-stone-900 dark:text-white">0901-308-818</p>
+                            <button onclick="copyToClipboard('0901308818', '電話號碼已複製！')" class="mt-2 text-xs font-medium text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1">
+                                <i class="fa-regular fa-copy"></i> 點擊複製電話
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200/80 dark:border-stone-700/80 flex items-start gap-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-sm font-semibold text-stone-400 uppercase tracking-wider mb-1">通訊地址 (Location)</h4>
+                            <p class="text-sm font-medium text-stone-900 dark:text-white">臺中市龍井區大順街132巷3號</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Contact Message Form -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="bg-white dark:bg-stone-800 rounded-3xl p-8 border border-stone-200/80 dark:border-stone-700/80 shadow-sm space-y-6">
+                        <h3 class="text-xl font-bold text-stone-900 dark:text-white mb-2">傳送訊息給我</h3>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-medium text-stone-600 dark:text-stone-300 mb-2">您的姓名 / 稱呼 *</label>
+                                <input type="text" required placeholder="例如：張先生 / 王小姐" class="w-full px-4 py-3 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-stone-600 dark:text-stone-300 mb-2">聯絡 Email *</label>
+                                <input type="email" required placeholder="name@company.com" class="w-full px-4 py-3 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-stone-600 dark:text-stone-300 mb-2">訊息主題</label>
+                            <input type="text" placeholder="例如：實習/職缺邀請、專案合作" class="w-full px-4 py-3 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-stone-600 dark:text-stone-300 mb-2">訊息內容 *</label>
+                            <textarea required rows="4" placeholder="請在此輸入您想傳達的訊息內容..." class="w-full px-4 py-3 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-md shadow-brand-600/20 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> 傳送訊息
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="resume-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm no-print">
+        <div class="bg-white dark:bg-stone-900 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl border border-stone-200 dark:border-stone-700 relative">
+            <!-- Modal Close Button -->
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Modal Resume Header -->
+            <div class="border-b border-stone-200 dark:border-stone-800 pb-6 mb-6">
+                <h3 class="text-2xl font-bold text-stone-900 dark:text-white">吳知錡 (Chih-Chi Wu) - 簡歷速覽</h3>
+                <p class="text-sm text-brand-600 dark:text-brand-400 mt-1">國際貿易與商務溝通專員</p>
+            </div>
+
+            <!-- Resume Content Summary -->
+            <div class="space-y-6 text-sm text-stone-600 dark:text-stone-300">
+                <div>
+                    <h4 class="font-bold text-stone-900 dark:text-white mb-1">【個人簡介】</h4>
+                    <p class="leading-relaxed">熱衷於學習新知識，積極吸收貿易與進出口相關領域。具備良好的溝通協調能力與細心態度，期望將國貿理論與實務結合，提升國際商務交流效益與業務操作效率。</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-stone-900 dark:text-white mb-1">【學歷背景】</h4>
+                    <p>• <strong>東海大學 國貿系</strong>（至今） - 經濟分析、國際溝通與企業管理</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-stone-900 dark:text-white mb-1">【海外研習與實習】</h4>
+                    <p>• <strong>美國聖十字學院研習</strong> (2025.06) - 跨文化專案合作與全球經濟趨勢</p>
+                    <p>• <strong>台南市陳浣青 會計助理實習</strong> - 會計憑證核對與財務流程規範</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-stone-900 dark:text-white mb-1">【聯絡資訊】</h4>
+                    <p>• Email: a0909871018@gmail.com | 電話: 0901-308-818</p>
+                    <p>• 地址: 臺中市龍井區大順街132巷3號</p>
+                </div>
+            </div>
+
+            <!-- Modal Action Footer -->
+            <div class="mt-8 pt-6 border-t border-stone-200 dark:border-stone-800 flex items-center justify-end gap-3">
+                <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-sm font-medium bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300">關閉</button>
+                <button onclick="window.print()" class="px-5 py-2 rounded-xl text-sm font-medium bg-brand-600 text-white hover:bg-brand-700 flex items-center gap-1.5">
+                    <i class="fa-solid fa-print"></i> 列印簡歷
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-8 bg-white dark:bg-stone-900 border-t border-stone-200/80 dark:border-stone-800/80 text-center text-xs text-stone-400 no-print">
+        <div class="max-w-6xl mx-auto px-4">
+            <p>© 2026 吳知錡 Chih-Chi Wu. All rights reserved.</p>
+            <p class="mt-1">Designed for International Trade & Business Excellence</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Switching Logic ---
+        function initTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                showToast('已切換至明亮模式');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                showToast('已切換至深色模式');
+            }
+        }
+
+        // --- Toast Notification Logic ---
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // --- Clipboard Utility ---
+        function copyToClipboard(text, successMsg) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast(successMsg);
+        }
+
+        // --- Mobile Menu Toggle ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // --- Skill Badge Category Filter ---
+        function filterSkills(category) {
+            const cards = document.querySelectorAll('.skill-card');
+            const buttons = document.querySelectorAll('#skill-filters button');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.className = 'skill-tab-btn active px-4 py-2 rounded-xl text-sm font-medium transition-all bg-brand-600 text-white shadow-sm';
+                } else {
+                    btn.className = 'skill-tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700';
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- Contact Form Handling ---
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast('訊息已成功傳送！吳知錡會盡快回覆您。');
+            document.getElementById('contact-form').reset();
+        }
+
+        // --- Modal Control ---
+        function openModal() {
+            document.getElementById('resume-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('resume-modal').classList.add('hidden');
+        }
+
+        // Initialize Theme on Load
+        initTheme();
+    </script>
+</body>
+</html>
